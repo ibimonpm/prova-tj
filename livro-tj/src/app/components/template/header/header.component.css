@@ -1,0 +1,19 @@
+img{
+    height: 9rem;
+}
+
+.header{
+    justify-content: left;
+    height: 3%;
+}
+
+span{
+    display: flex;
+    align-items: center;
+}
+
+.mat-toolbar h1{
+    padding-left: 1.0rem !important;
+    font-size: 1.9rem;
+    color: rgb(66, 66, 5);
+}

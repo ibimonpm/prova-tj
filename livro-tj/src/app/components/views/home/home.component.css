@@ -1,0 +1,23 @@
+.home{
+    width: 97%;
+    margin: 1rem auto;
+    padding: .8rem;
+}
+.title{
+font-size: 1.9rem;
+}
+
+.subtitle{
+    font-size: 1.5rem;
+}
+@media(max-width:450px){
+    .home{
+        width: 70%;
+    }
+}
+
+@media(max-width:860px){
+    .home{
+        width: 90%;
+    }
+}

@@ -1,0 +1,57 @@
+<div class="content">
+    <div class="title">
+        <h1>Assuntos</h1>
+    </div>
+
+    <button class="mat-elevation-z8" mat-stroked-button color="primary"
+    (click)="navegarParaAssuntoCreate()">
+      Novo assunto
+    </button>
+
+    <table mat-table [dataSource]="assunto" class="mat-elevation-z8" style="width: 100%;">
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Identificador </th>
+          <td mat-cell *matCellDef="let row"> {{ row.id }} </td>
+        </ng-container>
+
+        <!-- Nome Column -->
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef> Nome </th>
+          <td mat-cell *matCellDef="let row"> {{ row.nome }} </td>
+        </ng-container>
+
+        <!-- Descrição Column -->
+        <ng-container matColumnDef="descricao">
+          <th mat-header-cell *matHeaderCellDef> Descrição </th>
+          <td mat-cell *matCellDef="let row"> {{ row.descricao }} </td>
+        </ng-container>
+
+         <!-- Livros Column -->
+         <ng-container matColumnDef="livros">
+          <th mat-header-cell *matHeaderCellDef> Livros </th>
+          <td mat-cell *matCellDef="let row">
+            <a routerLink="{{row.id}}/livros" class="livros">
+              <i class="material-icons">book</i>
+            </a>
+          </td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef> Ações </th>
+          <td  class="mat-header" mat-cell *matCellDef="let row">
+            <a routerLink="update/{{row.id}}" class="edit">
+              <i class="material-icons">edit</i>
+            </a>
+            <a routerLink="delete/{{row.id}}" class="delete">
+              <i class="material-icons">delete</i>
+            </a>
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</div>
