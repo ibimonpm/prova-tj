@@ -1,98 +1,103 @@
-<form>
-  <h1>Novo Livro</h1>
+<div class="example-container">
+  <form>
+    <h1>Novo Livro</h1>
+    <div>
+      <mat-form-field class="form">
+        <label>Titulo</label>
+        <input
+          [(ngModel)]="livro.titulo"
+          type="text"
+          matInput
+          [formControl]="titulo"
+          required
+          name="titulo"
+          placeholder="Ex. Biblia Sagrada"
+          maxlength="40"
+        />
 
-  <mat-form-field class="form">
-    <mat-label>Titulo</mat-label>
-    <input
-      [(ngModel)] = "livro.titulo"
-      type="text"
-      matInput
-      [formControl]="titulo"
-      required
-      name="titulo"
-      placeholder="Ex. Biblia Sagrada"
-      maxlength="40"
-    />
-
-    <mat-error *ngIf="titulo.invalid">{{ getMessage() }}</mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="form">
-    <mat-label>Editora</mat-label>
-    <input
-     [(ngModel)] = "livro.editora"
-      type="text"
-      matInput
-      [formControl]="editora"
-      required
-      name="editora"
-      placeholder="Ex. Alta Books"
-      maxlength="40"
-    />
-
-    <mat-error *ngIf="editora.invalid">{{ getMessage() }}</mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="form">
-    <mat-label>Edição</mat-label>
-    <textarea
-      [(ngModel)] = "livro.edicao"
-      type="number"
-      matInput
-      [formControl]="edicao"
-      required
-      name="edicao"
-      maxlength="3"
-      placeholder="Ex. 1"
-    >
-    </textarea>
-
-    <mat-error *ngIf="edicao.invalid">{{ getMessage() }}</mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="form">
-    <mat-label>Ano Publicação</mat-label>
-    <mat-selection-list>
-
-      <mat-option *ngFor="let year of years" [value]="year"
-        [(ngModel)] = "livro.anoPublicacao"
-        [formControl]="anoPublicacao"
+        <mat-error *ngIf="titulo.invalid">{{ getMessage() }}</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-form-field class="form">
+      <mat-label>Editora</mat-label>
+      <input
+        [(ngModel)]="livro.editora"
+        type="text"
+        matInput
+        [formControl]="editora"
         required
-        name="anoPublicacao"
+        name="editora"
+        placeholder="Ex. Alta Books"
+        maxlength="40"
+      />
+
+    </mat-form-field>
+    <mat-error *ngIf="editora.invalid">{{ getMessage() }}</mat-error>
+
+    <mat-form-field class="form">
+      <mat-label>Edição</mat-label>
+
+      <input
+        height="34"
+        [(ngModel)]="livro.edicao"
+        type="number"
+        matInput
+        required
+        name="edicao"
+        maxlength="3"
+        placeholder="Ex. 1"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form">
+      <mat-label>Ano Publicação</mat-label>
+      <mat-select required>
+        <mat-option>-- None --</mat-option>
+        <mat-option
+          *ngFor="let year of years"
+          [value]="year"
+          [(ngModel)]="livro.anoPublicacao"
+          name="anoPublicacao"
         >
-        {{ year }}
-      </mat-option>
-    </mat-selection-list>
+          {{ year }}
+        </mat-option>
+      </mat-select>
 
-    <mat-error *ngIf="anoPublicacao.invalid">{{ getMessage() }}</mat-error>
-  </mat-form-field>
+    </mat-form-field>
 
-  <mat-form-field class="form">
-    <mat-label>Vlr. Para Vendas</mat-label>
-    <textarea
-      [(ngModel)] = "livro.valorMedioVenda"
-      type="number"
-      matInput
-      name="valorMedioVenda"
-      maxlength="3"
-      placeholder="Ex. 44.01"
-    >
-    <span matTextPrefix>$&nbsp;</span>
-    <span matTextSuffix>.00</span>
-    </textarea>
+    
+    <mat-form-field class="form">
+      <input
+        [(ngModel)]="livro.valorMedioVenda"
+        type="number"
+        matInput
+        name="valorMedioVenda"
+        maxlength="3"
+        placeholder="Ex. 44.01"
+      >
+      <span matTextPrefix>R$&nbsp;</span>
+      <span matTextSuffix>.00</span>
+    </mat-form-field>
 
-  </mat-form-field>
+    <div class="buttons">
+      <button
+        [disabled]="getMessage()"
+        (click)="create()"
+        class="mat-elevation-z8"
+        mat-stroked-button
+        color="primary"
+      >
+        Criar
+      </button>
 
-  <div class="buttons">
-    <button
-      [disabled]="getMessage()"
-      (click)="create()"
-    class="mat-elevation-z8" mat-stroked-button color="primary">
-      Criar
-    </button>
-
-    <button (click)="cancel()" class="mat-elevation-z8" mat-stroked-button color="warn">
-      Cancelar
-    </button>
-  </div>
-</form>
+      <button
+        (click)="cancel()"
+        class="mat-elevation-z8"
+        mat-stroked-button
+        color="warn"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

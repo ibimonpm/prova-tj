@@ -1,5 +1,4 @@
 form{
-
     text-align: center;
     width: 70%;
     margin: 2rem auto 0 auto;
@@ -11,8 +10,8 @@ h1{
     margin-bottom: 3rem;
 }
 
-.form{
-    width: 100%;
+.example-full-width {
+  width: 100%;
 }
 .buttons{
     width: 100%;

@@ -10,6 +10,10 @@ import { LivroCreateComponent } from "./components/views/livros/livro-create/liv
 import { LivroUpdateComponent } from "./components/views/livros/livro-update/livro-update.component";
 import { LivroDeleteComponent } from "./components/views/livros/livro-delete/livro-delete.component";
 import { LivroReadComponent } from "./components/views/livros/livro-read/livro-read.component";
+import { AutorReadAllComponent } from "./components/views/autor/autor-read-all/autor-read-all.component";
+import { AutorUpdateComponent } from "./components/views/autor/autor-update/autor-update.component";
+import { AutorDeleteComponent } from "./components/views/autor/autor-delete/autor-delete.component";
+import { AutorCreateComponent } from "./components/views/autor/autor-create/autor-create.component";
 
 const routes: Routes = [
   {
@@ -34,23 +38,47 @@ const routes: Routes = [
     component: AssuntoUpdateComponent,
   },
   {
-    path: "assuntos/:id_cat/livros",
+    path: "assuntos/:id_ass/livros",
     component: LivroReadAllComponent,
   },
   {
-    path: "assuntos/:id_cat/livros/create",
+    path: "livros",
+    component: LivroReadAllComponent,
+  },
+  {
+    path: "autores",
+    component: AutorReadAllComponent,
+  },
+  {
+    path: "assuntos/:id_ass/livros/create",
     component: LivroCreateComponent,
   },
   {
-    path: "assuntos/:id_cat/livros/:id/update",
+    path: "livros/create",
+    component: LivroCreateComponent,
+  },
+  {
+    path: "livros/:id/update",
     component: LivroUpdateComponent,
   },
   {
-    path: "assuntos/:id_cat/livros/:id/delete",
+    path: "autores/create",
+    component: AutorCreateComponent,
+  },
+  {
+    path: "autores/:id/update",
+    component: AutorUpdateComponent,
+  },
+  {
+    path: "autores/:id/delete",
+    component: AutorDeleteComponent,
+  },
+  {
+    path: "assuntos/:id_ass/livros/:id/delete",
     component: LivroDeleteComponent,
   },
   {
-    path: "assuntos/:id_cat/livros/:id/read",
+    path: "assuntos/:id_ass/livros/:id/read",
     component: LivroReadComponent,
   },
 ];

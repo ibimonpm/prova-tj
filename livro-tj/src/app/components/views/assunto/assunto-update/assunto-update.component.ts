@@ -10,8 +10,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class AssuntoUpdateComponent {
   assunto: Assunto = {
-    id: "",
-    nome: "",
+    id: 0,
     descricao: "",
   };
 
@@ -22,13 +21,13 @@ export class AssuntoUpdateComponent {
   ) {}
 
   ngOnInit(): void {
-    this.assunto.id = this.route.snapshot.paramMap.get("id")!;
+    this.assunto.id = Number.parseInt(this.route.snapshot.paramMap.get("id")!);
     this.findById();
   }
 
   findById(): void {
     this.service.findById(this.assunto.id!).subscribe((resposta) => {
-      this.assunto.nome = resposta.nome;
+      this.assunto.id = resposta.id;
       this.assunto.descricao = resposta.descricao;
     });
   }

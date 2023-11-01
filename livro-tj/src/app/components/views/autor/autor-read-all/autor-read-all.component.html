@@ -1,1 +1,44 @@
-<p>autor-read-all works!</p>
+<div class="content">
+  <div class="title">
+      <h1>Autores</h1>
+  </div>
+
+  <button class="mat-elevation-z8" mat-stroked-button color="primary"
+  (click)="navegarParaAutorCreate()"
+  >
+    Novo Autor
+  </button>
+
+  <table mat-table  [dataSource]="autores"  class="mat-elevation-z8" style="width: 100%;">
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Identificador </th>
+        <td mat-cell *matCellDef="let row"> {{ row.id }} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let row"> {{ row.nome }} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td  class="mat-header" mat-cell *matCellDef="let row">
+
+          <a routerLink=" {{ row.id }}/update" class="edit">
+            <i class="material-icons">edit</i>
+          </a>
+
+          <a routerLink=" {{ row.id}}/delete" class="delete">
+            <i class="material-icons">delete</i>
+          </a>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

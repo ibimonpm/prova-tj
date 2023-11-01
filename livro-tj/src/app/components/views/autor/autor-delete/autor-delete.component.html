@@ -1,1 +1,19 @@
-<p>autor-delete works!</p>
+<form>
+  <h1>Delete de um Autor</h1>
+
+  <mat-form-field class="form">
+      <mat-label>Nome</mat-label>
+      <textarea disabled type="text" matInput name="nome" [(ngModel)]="autor.nome">
+  </textarea>
+  </mat-form-field>
+
+  <div class="buttons">
+      <button (click)="delete()" class="mat-elevation-z8" mat-stroked-button color="primary">
+          Deletar
+      </button>
+
+      <button (click)="cancel()"  class="mat-elevation-z8" mat-stroked-button color="warn">
+          Cancelar
+      </button>
+  </div>
+</form>

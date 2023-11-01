@@ -1,5 +1,5 @@
 export interface Livro{
-    codI? : String,
+    codI? : number,
     titulo : String,
     editora: String,
     edicao: Number,

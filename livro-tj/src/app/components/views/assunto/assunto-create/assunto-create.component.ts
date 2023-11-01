@@ -11,7 +11,7 @@ import { AssuntoService } from '../assunto.service';
 export class AssuntoCreateComponent {
 
   assunto: Assunto = {
-    nome:'',
+    id: 0,
     descricao:''
   }
   constructor(private service: AssuntoService, private router: Router){}

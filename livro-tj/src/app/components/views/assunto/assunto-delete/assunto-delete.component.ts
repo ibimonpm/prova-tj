@@ -10,8 +10,7 @@ import { AssuntoService } from "../assunto.service";
 })
 export class AssuntoDeleteComponent implements OnInit {
   assunto: Assunto = {
-    id: "",
-    nome: "",
+    id: 0,
     descricao: "",
   };
 
@@ -22,7 +21,7 @@ export class AssuntoDeleteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.assunto.id = this.route.snapshot.paramMap.get("id")!;
+    this.assunto.id = Number.parseInt(this.route.snapshot.paramMap.get("id")!);
     this.findById();
   }
 

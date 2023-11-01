@@ -1,5 +1,4 @@
 export interface Assunto{
-    id?: String;
-    nome: String;
+    id?: Number;
     descricao: String;
 }

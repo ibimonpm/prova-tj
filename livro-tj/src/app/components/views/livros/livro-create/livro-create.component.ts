@@ -10,10 +10,10 @@ import { Livro } from '../livro.model';
   styleUrls: ['./livro-create.component.css'],
 })
 export class LivroCreateComponent implements OnInit {
-  id_cat: String = '';
+  id_ass: Number = 0;
 
   livro: Livro = {
-    codI: '',
+    codI: 0,
     titulo: '',
     editora: '',
     edicao: 0,
@@ -25,8 +25,6 @@ export class LivroCreateComponent implements OnInit {
 
   titulo = new FormControl('', [Validators.minLength(3)]);
   editora = new FormControl('', [Validators.minLength(3)]);
-  edicao = new FormControl('', [Validators.minLength(3)]);
-  anoPublicacao = new FormControl('', [Validators.minLength(3)]);
 
   constructor(
     private service: LivroService,
@@ -40,17 +38,17 @@ export class LivroCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id_cat = this.route.snapshot.paramMap.get('id_cat')!;
+    this.id_ass = Number.parseInt(this.route.snapshot.paramMap.get('id_ass')!);
   }
 
   create(): void {
-    this.service.create(this.livro, this.id_cat).subscribe({
+    this.service.create(this.livro, this.id_ass).subscribe({
       next: () => {
-        this.router.navigate([`assuntos/${this.id_cat}/livros`]);
+        this.router.navigate([`assuntos/${this.id_ass}/livros`]);
         this.service.mensagem('Livro criado com sucesso!');
       },
       error: (erro) => {
-        this.router.navigate([`assuntos/${this.id_cat}/livros`]);
+        this.router.navigate([`assuntos/${this.id_ass}/livros`]);
         this.service.mensagem('Erro ao criar novo livro, tente mais tarde!');
         console.log(erro);
       },
@@ -58,7 +56,7 @@ export class LivroCreateComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate([`assuntos/${this.id_cat}/livros`]);
+    this.router.navigate([`assuntos/${this.id_ass}/livros`]);
   }
 
   getMessage() {
@@ -68,9 +66,7 @@ export class LivroCreateComponent implements OnInit {
     if (this.editora.invalid) {
       return 'O campo editora deve conter entre 3 e 40 caracteres.';
     }
-    if (this.edicao.invalid) {
-      return 'O campo edição deve ser informado';
-    }
+   
     return false;
   }
 }

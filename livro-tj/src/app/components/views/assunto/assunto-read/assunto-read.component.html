@@ -6,12 +6,7 @@
     <button class="mat-elevation-z8" mat-stroked-button color="primary"
     (click)="navegarParaAssuntoCreate()">
       Novo assunto
-    </button>
-
-    <button class="mat-elevation-z8" mat-stroked-button color="primary"
-    (click)="navegarParaAutorCreate()">
-      Novo autor
-    </button>
+   </button>
 
     <table mat-table [dataSource]="assunto" class="mat-elevation-z8" style="width: 100%;">
         <!-- Position Column -->
@@ -20,27 +15,12 @@
           <td mat-cell *matCellDef="let row"> {{ row.id }} </td>
         </ng-container>
 
-        <!-- Nome Column -->
-        <ng-container matColumnDef="nome">
-          <th mat-header-cell *matHeaderCellDef> Nome </th>
-          <td mat-cell *matCellDef="let row"> {{ row.nome }} </td>
-        </ng-container>
-
         <!-- Descrição Column -->
         <ng-container matColumnDef="descricao">
           <th mat-header-cell *matHeaderCellDef> Descrição </th>
           <td mat-cell *matCellDef="let row"> {{ row.descricao }} </td>
         </ng-container>
 
-         <!-- Livros Column -->
-         <ng-container matColumnDef="livros">
-          <th mat-header-cell *matHeaderCellDef> Livros </th>
-          <td mat-cell *matCellDef="let row">
-            <a routerLink="{{row.id}}/livros" class="livros">
-              <i class="material-icons">book</i>
-            </a>
-          </td>
-        </ng-container>
 
         <!-- Column -->
         <ng-container matColumnDef="acoes">

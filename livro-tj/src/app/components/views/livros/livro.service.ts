@@ -17,12 +17,12 @@ export class LivroService {
     return this.http.get<Livro[]>(url);
   }
 
-  findById(codI: String): Observable<Livro> {
+  findById(codI: Number): Observable<Livro> {
     const url = `${this.baseUrl}/livros/${codI}`;
     return this.http.get<Livro>(url);
   }
 
-  create(livro: Livro, id_assunto: String): Observable<Livro> {
+  create(livro: Livro, id_assunto: Number): Observable<Livro> {
     const url = `${this.baseUrl}/livros/${id_assunto}`;
     return this.http.post<Livro>(url, livro);
   }
@@ -32,7 +32,7 @@ export class LivroService {
     return this.http.put<void>(url, livro);
   }
 
-  delete(codI: String): Observable<void> {
+  delete(codI: Number): Observable<void> {
     const url = `${this.baseUrl}/livros/${codI}`;
     return this.http.delete<void>(url);
   }

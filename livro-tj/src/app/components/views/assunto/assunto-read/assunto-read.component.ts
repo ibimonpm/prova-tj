@@ -2,6 +2,8 @@ import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { Assunto } from '../assunto.model';
 import { AssuntoService } from '../assunto.service';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-assunto-read',
@@ -10,7 +12,7 @@ import { AssuntoService } from '../assunto.service';
 })
 export class AssuntoReadComponent{
   assunto: Assunto[] = []
-  displayedColumns: string[] = ['id', 'nome', 'descricao', 'livros','acoes'];
+  displayedColumns: string[] = ['id', 'descricao','acoes'];
 
   constructor(private service: AssuntoService, private router: Router){}
 

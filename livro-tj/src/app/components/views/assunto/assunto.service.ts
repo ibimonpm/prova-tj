@@ -19,7 +19,7 @@ export class AssuntoService {
       return this.htt.get<Assunto[]>(url);
    }
 
-   findById(id: String): Observable<Assunto>{
+   findById(id: Number): Observable<Assunto>{
       const url =  `${this.baseUrl}/assuntos/${id}`
       return this.htt.get<Assunto>(url);
    }
@@ -29,7 +29,7 @@ export class AssuntoService {
       return this.htt.post<Assunto>(url, Assunto);
    }
 
-   delete(id: String): Observable<void>{
+   delete(id: Number): Observable<void>{
       const url =  `${this.baseUrl}/assuntos/${id}`
       return this.htt.delete<void>(url);
    }

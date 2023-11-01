@@ -35,18 +35,15 @@
 
   <mat-form-field class="form">
     <mat-label>Edicao</mat-label>
-    <textarea
+    <input
       [(ngModel)]="livro.edicao"
       type="number"
       matInput
-      [formControl]="edicao"
       required
       name="edicao"
       maxlength="3"
       placeholder="Ex. 1"
     >
-    </textarea>
-
     <mat-error *ngIf="edicao.invalid">{{ getMessage() }}</mat-error>
   </mat-form-field>
 
@@ -56,7 +53,6 @@
 
       <mat-option *ngFor="let year of years" [value]="year"
         [(ngModel)] = "livro.anoPublicacao"
-        [formControl]="anoPublicacao"
         required
         name="anoPublicacao"
         >
@@ -69,7 +65,7 @@
 
   <mat-form-field class="form">
     <mat-label>Vlr. Para Vendas</mat-label>
-    <textarea
+    <input
       [(ngModel)] = "livro.valorMedioVenda"
       type="number"
       matInput
@@ -79,7 +75,7 @@
     >
     <span matTextPrefix>$&nbsp;</span>
     <span matTextSuffix>.00</span>
-    </textarea>
+
 
   </mat-form-field>
 

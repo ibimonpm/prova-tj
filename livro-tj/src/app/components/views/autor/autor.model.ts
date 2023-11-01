@@ -1,4 +1,4 @@
 export interface Autor {
-  codAu? : String,
+  id? : Number,
   nome : String,
 }

@@ -9,10 +9,10 @@ import { Livro } from "../livro.model";
   styleUrls: ['./livro-delete.component.css']
 })
 export class LivroDeleteComponent {
-  id_cat: String = "";
+  id_ass: Number = 0;
 
   livro: Livro = {
-    codI: "",
+    codI: 0,
     titulo: "",
     editora: "",
     edicao: 0,
@@ -27,8 +27,8 @@ export class LivroDeleteComponent {
   ) {}
 
   ngOnInit(): void {
-    this.id_cat = this.route.snapshot.paramMap.get("id_cat")!;
-    this.livro.codI = this.route.snapshot.paramMap.get("codI")!;
+    this.id_ass = Number.parseInt(this.route.snapshot.paramMap.get("id_ass")!);
+    this.livro.codI = Number.parseInt(this.route.snapshot.paramMap.get("codI")!);
     this.findById();
   }
 
@@ -44,7 +44,7 @@ export class LivroDeleteComponent {
   }
 
   cancel(): void {
-    this.router.navigate([`assuntos/${this.id_cat}/livros`]);
+    this.router.navigate([`assuntos/${this.id_ass}/livros`]);
   }
 
 

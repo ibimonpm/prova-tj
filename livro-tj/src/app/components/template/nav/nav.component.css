@@ -1,6 +1,5 @@
 .container{
-    height: 90%;
-    min-height: 90% !important;
+    height: 100%;
 }
 .matnavcontainerlist{
     vertical-align: middle;

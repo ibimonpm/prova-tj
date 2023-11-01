@@ -10,10 +10,10 @@ import { Livro } from "../livro.model";
   styleUrls: ["./livro-update.component.css"],
 })
 export class LivroUpdateComponent {
-  id_assunto: String = "";
+  id_assunto: Number = 0;
 
   livro: Livro = {
-    codI: "",
+    codI: 0,
     titulo: "",
     editora: "",
     edicao: 0,
@@ -25,8 +25,6 @@ export class LivroUpdateComponent {
 
   titulo = new FormControl('', [Validators.minLength(3)]);
   editora = new FormControl('', [Validators.minLength(3)]);
-  edicao = new FormControl('', [Validators.minLength(3)]);
-  anoPublicacao = new FormControl('', [Validators.minLength(3)]);
 
   constructor(
     private service: LivroService,
@@ -40,8 +38,8 @@ export class LivroUpdateComponent {
   }
 
   ngOnInit(): void {
-    this.id_assunto = this.route.snapshot.paramMap.get("id_assunto")!;
-    this.livro.codI = this.route.snapshot.paramMap.get("codI")!;
+    this.id_assunto = Number.parseInt(this.route.snapshot.paramMap.get("id_assunto")!);
+    this.livro.codI = Number.parseInt(this.route.snapshot.paramMap.get("codI")!);
     this.findById();
   }
 
@@ -81,9 +79,7 @@ export class LivroUpdateComponent {
     if (this.editora.invalid) {
       return 'O campo editora deve conter entre 3 e 40 caracteres.';
     }
-    if (this.edicao.invalid) {
-      return 'O campo edição deve ser informado';
-    }
+
     return false;
   }
 }
