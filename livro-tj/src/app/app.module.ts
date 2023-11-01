@@ -20,6 +20,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AssuntoReadComponent } from "./components/views/assunto/assunto-read/assunto-read.component";
@@ -70,6 +71,7 @@ import { AutorUpdateComponent } from './components/views/autor/autor-update/auto
     MatIconModule,
     MatCardModule,
     MatTableModule,
+    MatSelectModule,
     HttpClientModule,
     MatButtonModule,
     FormsModule,

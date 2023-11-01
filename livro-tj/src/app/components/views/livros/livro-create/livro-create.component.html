@@ -11,47 +11,80 @@
       required
       name="titulo"
       placeholder="Ex. Biblia Sagrada"
-      maxlength="100"
+      maxlength="40"
     />
 
     <mat-error *ngIf="titulo.invalid">{{ getMessage() }}</mat-error>
   </mat-form-field>
 
   <mat-form-field class="form">
-    <mat-label>Nome do Autor</mat-label>
+    <mat-label>Editora</mat-label>
     <input
-     [(ngModel)] = "livro.nomeAutor"
+     [(ngModel)] = "livro.editora"
       type="text"
       matInput
-      [formControl]="nomeAutor"
+      [formControl]="editora"
       required
-      name="nomeAutor"
-      placeholder="Ex. Espírito Santo"
-      maxlength="100"
+      name="editora"
+      placeholder="Ex. Alta Books"
+      maxlength="40"
     />
 
-    <mat-error *ngIf="nomeAutor.invalid">{{ getMessage() }}</mat-error>
+    <mat-error *ngIf="editora.invalid">{{ getMessage() }}</mat-error>
   </mat-form-field>
 
   <mat-form-field class="form">
-    <mat-label>Texto</mat-label>
+    <mat-label>Edição</mat-label>
     <textarea
-      [(ngModel)] = "livro.texto"
-      type="text"
+      [(ngModel)] = "livro.edicao"
+      type="number"
       matInput
-      [formControl]="texto"
+      [formControl]="edicao"
       required
-      name="texto"
-      maxlength="2000000"
-      placeholder="Ex. Gênesis"
+      name="edicao"
+      maxlength="3"
+      placeholder="Ex. 1"
     >
     </textarea>
 
-    <mat-error *ngIf="texto.invalid">{{ getMessage() }}</mat-error>
+    <mat-error *ngIf="edicao.invalid">{{ getMessage() }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form">
+    <mat-label>Ano Publicação</mat-label>
+    <mat-selection-list>
+
+      <mat-option *ngFor="let year of years" [value]="year"
+        [(ngModel)] = "livro.anoPublicacao"
+        [formControl]="anoPublicacao"
+        required
+        name="anoPublicacao"
+        >
+        {{ year }}
+      </mat-option>
+    </mat-selection-list>
+
+    <mat-error *ngIf="anoPublicacao.invalid">{{ getMessage() }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form">
+    <mat-label>Vlr. Para Vendas</mat-label>
+    <textarea
+      [(ngModel)] = "livro.valorMedioVenda"
+      type="number"
+      matInput
+      name="valorMedioVenda"
+      maxlength="3"
+      placeholder="Ex. 44.01"
+    >
+    <span matTextPrefix>$&nbsp;</span>
+    <span matTextSuffix>.00</span>
+    </textarea>
+
   </mat-form-field>
 
   <div class="buttons">
-    <button 
+    <button
       [disabled]="getMessage()"
       (click)="create()"
     class="mat-elevation-z8" mat-stroked-button color="primary">

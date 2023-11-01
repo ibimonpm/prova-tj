@@ -9,8 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./livro-read-all.component.css']
 })
 export class LivroReadAllComponent {
-  displayedColumns: string[] = ['id', 'titulo', 'livros','acoes'];
-  id_cat : String = '';
+  displayedColumns: string[] = ['codI', 'titulo', 'livros','acoes'];
+  id_assun : String = '';
   livros: Livro[] = [];
 
   constructor(private service: LivroService,
@@ -18,12 +18,12 @@ export class LivroReadAllComponent {
     private route:ActivatedRoute){}
 
   ngOnInit():void{
-    this.id_cat = this.route.snapshot.paramMap.get('id_cat')!;
+    this.id_assun = this.route.snapshot.paramMap.get('id_assunto')!;
     this.findAll();
   }
 
   findAll(): void{
-    this.service.findAllByAssunto(this.id_cat).subscribe((resposta) =>{
+    this.service.findAllByAssunto(this.id_assun).subscribe((resposta) =>{
       this.livros = resposta;
       console.log(this.livros);
     });
@@ -31,6 +31,6 @@ export class LivroReadAllComponent {
 
 
   navegarParaCriarLivro():void{
-    this.router.navigate([`assuntos/${this.id_cat}/livros/create`]);
+    this.router.navigate([`assuntos/${this.id_assun}/livros/create`]);
   }
 }

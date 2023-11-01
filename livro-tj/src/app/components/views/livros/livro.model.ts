@@ -1,6 +1,8 @@
 export interface Livro{
-    id? : String,
+    codI? : String,
     titulo : String,
-    nomeAutor: String,
-    texto: String
+    editora: String,
+    edicao: Number,
+    anoPublicacao: Number,
+    valorMedioVenda: Number
 }

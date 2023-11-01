@@ -28,4 +28,8 @@ export class AssuntoReadComponent{
   navegarParaAssuntoCreate(){
     this.router.navigate(["assuntos/create"])
   }
+
+  navegarParaAutorCreate(){
+    this.router.navigate(["autor/create"])
+  }
 }

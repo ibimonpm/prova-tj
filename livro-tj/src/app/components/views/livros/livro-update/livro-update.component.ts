@@ -10,52 +10,64 @@ import { Livro } from "../livro.model";
   styleUrls: ["./livro-update.component.css"],
 })
 export class LivroUpdateComponent {
-  id_cat: String = "";
+  id_assunto: String = "";
 
   livro: Livro = {
-    id: "",
+    codI: "",
     titulo: "",
-    nomeAutor: "",
-    texto: "",
+    editora: "",
+    edicao: 0,
+    anoPublicacao:0,
+    valorMedioVenda:0
   };
 
-  titulo = new FormControl("", [Validators.minLength(3)]);
-  nomeAutor = new FormControl("", [Validators.minLength(3)]);
-  texto = new FormControl("", [Validators.minLength(10)]);
+  years: number[] = [];
+
+  titulo = new FormControl('', [Validators.minLength(3)]);
+  editora = new FormControl('', [Validators.minLength(3)]);
+  edicao = new FormControl('', [Validators.minLength(3)]);
+  anoPublicacao = new FormControl('', [Validators.minLength(3)]);
 
   constructor(
     private service: LivroService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    const currentYear = new Date().getFullYear();
+    for (let year = currentYear; year >= currentYear - 10; year--) {
+      this.years.push(year);
+    }
+  }
 
   ngOnInit(): void {
-    this.id_cat = this.route.snapshot.paramMap.get("id_cat")!;
-    this.livro.id = this.route.snapshot.paramMap.get("id")!;
+    this.id_assunto = this.route.snapshot.paramMap.get("id_assunto")!;
+    this.livro.codI = this.route.snapshot.paramMap.get("codI")!;
     this.findById();
   }
 
   findById(): void {
-    this.service.findById(this.livro.id!).subscribe((resposta) => {
-      this.livro.id = resposta.id;
+    this.service.findById(this.livro.codI!).subscribe((resposta) => {
+      this.livro.codI = resposta.codI;
       this.livro.titulo = resposta.titulo;
-      this.livro.nomeAutor = resposta.nomeAutor;
-      this.livro.texto = resposta.texto;
+      this.livro.editora = resposta.editora;
+      this.livro.edicao = resposta.edicao;
+      this.livro.anoPublicacao = resposta.anoPublicacao;
+      this.livro.valorMedioVenda = resposta.valorMedioVenda;
     });
   }
 
   cancel(): void {
-    this.router.navigate([`assuntos/${this.id_cat}/livros`]);
+    this.router.navigate([`assuntos/${this.id_assunto}/livros`]);
   }
 
   update(): void {
     this.service.update(this.livro).subscribe({
       next: () => {
-        this.router.navigate([`assuntos/${this.id_cat}/livros`]);
+        this.router.navigate([`assuntos/${this.id_assunto}/livros`]);
         this.service.mensagem("Livro alterado com sucesso!");
       },
       error: (erro) => {
-        this.router.navigate([`assuntos/${this.id_cat}/livros`]);
+        this.router.navigate([`assuntos/${this.id_assunto}/livros`]);
         this.service.mensagem("Erro ao altera novo livro, tente mais tarde!");
         console.log(erro);
       },
@@ -64,13 +76,13 @@ export class LivroUpdateComponent {
 
   getMessage() {
     if (this.titulo.invalid) {
-      return "O campo titulo deve conter entre 3 e 100 caracteres.";
+      return 'O campo titulo deve conter entre 3 e 40 caracteres.';
     }
-    if (this.nomeAutor.invalid) {
-      return "O campo nome do autor deve conter entre 3 e 100 caracteres.";
+    if (this.editora.invalid) {
+      return 'O campo editora deve conter entre 3 e 40 caracteres.';
     }
-    if (this.texto.invalid) {
-      return "O campo texto deve conter entre 10 e 2000000 caracteres.";
+    if (this.edicao.invalid) {
+      return 'O campo edição deve ser informado';
     }
     return false;
   }

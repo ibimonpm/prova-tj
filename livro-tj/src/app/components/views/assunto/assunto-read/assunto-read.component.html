@@ -8,6 +8,11 @@
       Novo assunto
     </button>
 
+    <button class="mat-elevation-z8" mat-stroked-button color="primary"
+    (click)="navegarParaAutorCreate()">
+      Novo autor
+    </button>
+
     <table mat-table [dataSource]="assunto" class="mat-elevation-z8" style="width: 100%;">
         <!-- Position Column -->
         <ng-container matColumnDef="id">

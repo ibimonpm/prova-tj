@@ -12,10 +12,12 @@ export class LivroDeleteComponent {
   id_cat: String = "";
 
   livro: Livro = {
-    id: "",
+    codI: "",
     titulo: "",
-    nomeAutor: "",
-    texto: "",
+    editora: "",
+    edicao: 0,
+    anoPublicacao:0,
+    valorMedioVenda:0
   };
 
   constructor(
@@ -26,12 +28,12 @@ export class LivroDeleteComponent {
 
   ngOnInit(): void {
     this.id_cat = this.route.snapshot.paramMap.get("id_cat")!;
-    this.livro.id = this.route.snapshot.paramMap.get("id")!;
+    this.livro.codI = this.route.snapshot.paramMap.get("codI")!;
     this.findById();
   }
 
   delete(): void{
-    this.service.delete(this.livro.id!).subscribe(() =>{
+    this.service.delete(this.livro.codI!).subscribe(() =>{
        this.router.navigate(['assuntos']);
        this.service.mensagem('Livro deletado com sucesso!');
     },
@@ -47,11 +49,13 @@ export class LivroDeleteComponent {
 
 
   findById(): void {
-    this.service.findById(this.livro.id!).subscribe((resposta) => {
-      this.livro.id = resposta.id;
+    this.service.findById(this.livro.codI!).subscribe((resposta) => {
+      this.livro.codI = resposta.codI;
       this.livro.titulo = resposta.titulo;
-      this.livro.nomeAutor = resposta.nomeAutor;
-      this.livro.texto = resposta.texto;
+      this.livro.editora = resposta.editora;
+      this.livro.edicao = resposta.edicao;
+      this.livro.anoPublicacao = resposta.anoPublicacao;
+      this.livro.valorMedioVenda = resposta.valorMedioVenda;
     });
   }
 }
