@@ -34,7 +34,6 @@ import { LivroDeleteComponent } from './components/views/livros/livro-delete/liv
 import { LivroReadComponent } from './components/views/livros/livro-read/livro-read.component';
 import { AutorCreateComponent } from './components/views/autor/autor-create/autor-create.component';
 import { AutorDeleteComponent } from './components/views/autor/autor-delete/autor-delete.component';
-import { AutorReadComponent } from './components/views/autor/autor-read/autor-read.component';
 import { AutorReadAllComponent } from './components/views/autor/autor-read-all/autor-read-all.component';
 import { AutorUpdateComponent } from './components/views/autor/autor-update/autor-update.component';
 
@@ -56,7 +55,6 @@ import { AutorUpdateComponent } from './components/views/autor/autor-update/auto
     LivroReadComponent,
     AutorCreateComponent,
     AutorDeleteComponent,
-    AutorReadComponent,
     AutorReadAllComponent,
     AutorUpdateComponent
 
