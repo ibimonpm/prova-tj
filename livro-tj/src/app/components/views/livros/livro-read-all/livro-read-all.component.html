@@ -9,27 +9,51 @@
       Novo Livro
     </button>
 
+    <button class="mat-elevation-z8" mat-stroked-button color="primary"
+    (click)="downloadTest()"
+    >
+      Relatório
+    </button>
+
     <table mat-table  [dataSource]="livros"  class="mat-elevation-z8" style="width: 100%;">
-        <!-- Position Column -->
         <ng-container matColumnDef="codI">
           <th mat-header-cell *matHeaderCellDef> Identificador </th>
           <td mat-cell *matCellDef="let row"> {{ row.codI }} </td>
         </ng-container>
 
-        <!-- Name Column -->
         <ng-container matColumnDef="titulo">
           <th mat-header-cell *matHeaderCellDef> Titulo </th>
           <td mat-cell *matCellDef="let row"> {{ row.titulo }} </td>
         </ng-container>
 
-         <!-- Livros Column -->
-         <ng-container matColumnDef="livros">
-          <th mat-header-cell *matHeaderCellDef> Ler Livro </th>
-          <td mat-cell *matCellDef="let row">
-            <a routerLink="{{row.codI}}/read" class="livros">
-              <i class="material-icons">book</i>
-            </a>
+         <ng-container matColumnDef="media">
+          <th mat-header-cell *matHeaderCellDef> Média de Valor </th>
+          <td mat-cell *matCellDef="let row"> {{ row.mediaPrecoStr }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="editora">
+          <th mat-header-cell *matHeaderCellDef> Editora </th>
+          <td mat-cell *matCellDef="let row"> {{ row.editora }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edicao">
+          <th mat-header-cell *matHeaderCellDef> Edição </th>
+          <td mat-cell *matCellDef="let row"> {{ row.edicao }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="assunto">
+          <th mat-header-cell *matHeaderCellDef> Assunto </th>
+          <td mat-cell *matCellDef="let row"> {{ (row.assunto ? row.assunto.descricao : "")}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="autores">
+          <th mat-header-cell *matHeaderCellDef> Autores </th>
+          <td mat-cell *matCellDef="let element">
+            <ul>
+              <li *ngFor="let autor of element.autores">{{ autor.nome }}</li>
+            </ul>
           </td>
+          <td mat-cell *ngFor="let autor of autores"> {{ autor.nome }} </td>
         </ng-container>
 
         <!-- Symbol Column -->
@@ -37,12 +61,20 @@
           <th mat-header-cell *matHeaderCellDef> Ações </th>
           <td  class="mat-header" mat-cell *matCellDef="let row">
 
-            <a routerLink=" {{ row.codI }}/update" class="edit">
+            <a routerLink="{{ row.codI }}" class="edit">
               <i class="material-icons">edit</i>
             </a>
 
-            <a routerLink=" {{ row.codI }}/delete" class="delete">
+            <a routerLink="{{ row.codI }}/delete" class="delete">
               <i class="material-icons">delete</i>
+            </a>
+
+            <a routerLink="vla/{{ row.codI }}"  class="vincula">
+              <i class="material-icons" >person_add</i>
+            </a>
+
+            <a routerLink="vlass/{{ row.codI }}" class="vincula">
+              <i class="material-icons">category</i>
             </a>
 
           </td>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef  } from '@angular/core';
+import { CommonModule, CurrencyPipe} from '@angular/common';
 import { FormControl, Validators } from '@angular/forms';
 import { LivroService } from '../livro.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,7 +19,9 @@ export class LivroCreateComponent implements OnInit {
     editora: '',
     edicao: 0,
     anoPublicacao: 0,
-    valorMedioVenda: 0,
+    mediaPrecoStr: "",
+    autores:[{id:0, nome:''}],
+    assunto:{id:0, descricao:""}
   };
 
   years: number[] = [];
@@ -42,13 +45,13 @@ export class LivroCreateComponent implements OnInit {
   }
 
   create(): void {
-    this.service.create(this.livro, this.id_ass).subscribe({
+    this.service.createLivroDireto(this.livro).subscribe({
       next: () => {
-        this.router.navigate([`assuntos/${this.id_ass}/livros`]);
+        this.router.navigate([`livros`]);
         this.service.mensagem('Livro criado com sucesso!');
       },
       error: (erro) => {
-        this.router.navigate([`assuntos/${this.id_ass}/livros`]);
+        this.router.navigate([`livros`]);
         this.service.mensagem('Erro ao criar novo livro, tente mais tarde!');
         console.log(erro);
       },
@@ -56,7 +59,7 @@ export class LivroCreateComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate([`assuntos/${this.id_ass}/livros`]);
+    this.router.navigate([`livros`]);
   }
 
   getMessage() {
@@ -66,7 +69,7 @@ export class LivroCreateComponent implements OnInit {
     if (this.editora.invalid) {
       return 'O campo editora deve conter entre 3 e 40 caracteres.';
     }
-   
+
     return false;
   }
 }

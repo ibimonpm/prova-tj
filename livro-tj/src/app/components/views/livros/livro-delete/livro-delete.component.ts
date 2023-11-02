@@ -17,7 +17,9 @@ export class LivroDeleteComponent {
     editora: "",
     edicao: 0,
     anoPublicacao:0,
-    valorMedioVenda:0
+    mediaPrecoStr:"",
+    autores:[{id:0, nome:''}],
+    assunto:{id:0, descricao:""}
   };
 
   constructor(
@@ -44,7 +46,7 @@ export class LivroDeleteComponent {
   }
 
   cancel(): void {
-    this.router.navigate([`assuntos/${this.id_ass}/livros`]);
+    this.router.navigate([`livros`]);
   }
 
 
@@ -55,7 +57,7 @@ export class LivroDeleteComponent {
       this.livro.editora = resposta.editora;
       this.livro.edicao = resposta.edicao;
       this.livro.anoPublicacao = resposta.anoPublicacao;
-      this.livro.valorMedioVenda = resposta.valorMedioVenda;
+      this.livro.mediaPrecoStr = resposta.mediaPrecoStr;
     });
   }
 }

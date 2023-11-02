@@ -43,40 +43,29 @@
       name="edicao"
       maxlength="3"
       placeholder="Ex. 1"
-    >
-    <mat-error *ngIf="edicao.invalid">{{ getMessage() }}</mat-error>
+    />
   </mat-form-field>
 
   <mat-form-field class="form">
     <mat-label>Ano Publicação</mat-label>
-    <mat-selection-list>
-
-      <mat-option *ngFor="let year of years" [value]="year"
-        [(ngModel)] = "livro.anoPublicacao"
-        required
-        name="anoPublicacao"
-        >
+    <mat-select required [(ngModel)]="livro.anoPublicacao" name="anoPublicacao">
+      <mat-option *ngFor="let year of years" [value]="year">
         {{ year }}
       </mat-option>
-    </mat-selection-list>
-
-    <mat-error *ngIf="anoPublicacao.invalid">{{ getMessage() }}</mat-error>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field class="form">
-    <mat-label>Vlr. Para Vendas</mat-label>
+    <mat-label>Vlr. Médio de Venda</mat-label>
     <input
-      [(ngModel)] = "livro.valorMedioVenda"
-      type="number"
       matInput
-      name="valorMedioVenda"
-      maxlength="3"
-      placeholder="Ex. 44.01"
-    >
-    <span matTextPrefix>$&nbsp;</span>
-    <span matTextSuffix>.00</span>
-
-
+      name="mediaPrecoStr"
+      currencyMask
+      placeholder="Ex. 120,00"
+      value=""
+      [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+      [(ngModel)]="livro.mediaPrecoStr"
+    />
   </mat-form-field>
 
   <div class="buttons">

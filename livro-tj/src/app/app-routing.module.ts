@@ -9,11 +9,12 @@ import { LivroReadAllComponent } from "./components/views/livros/livro-read-all/
 import { LivroCreateComponent } from "./components/views/livros/livro-create/livro-create.component";
 import { LivroUpdateComponent } from "./components/views/livros/livro-update/livro-update.component";
 import { LivroDeleteComponent } from "./components/views/livros/livro-delete/livro-delete.component";
-import { LivroReadComponent } from "./components/views/livros/livro-read/livro-read.component";
 import { AutorReadAllComponent } from "./components/views/autor/autor-read-all/autor-read-all.component";
 import { AutorUpdateComponent } from "./components/views/autor/autor-update/autor-update.component";
 import { AutorDeleteComponent } from "./components/views/autor/autor-delete/autor-delete.component";
 import { AutorCreateComponent } from "./components/views/autor/autor-create/autor-create.component";
+import { VincularlivroautorComponent } from "./components/views/vincular-livro-autor/vincularlivroautor.component";
+import { VincularlivroassuntoComponent } from "./components/views/vincular-livro-assunto/vincularlivroassunto.component";
 
 const routes: Routes = [
   {
@@ -58,7 +59,7 @@ const routes: Routes = [
     component: LivroCreateComponent,
   },
   {
-    path: "livros/:id/update",
+    path: "livros/:codI",
     component: LivroUpdateComponent,
   },
   {
@@ -74,12 +75,17 @@ const routes: Routes = [
     component: AutorDeleteComponent,
   },
   {
-    path: "assuntos/:id_ass/livros/:id/delete",
+    path: "livros/:id/delete",
     component: LivroDeleteComponent,
   },
   {
-    path: "assuntos/:id_ass/livros/:id/read",
-    component: LivroReadComponent,
+    path: "livros/vla/:codI",
+    component: VincularlivroautorComponent,
+  },
+
+  {
+    path: "livros/vlass/:codI",
+    component: VincularlivroassuntoComponent,
   },
 ];
 

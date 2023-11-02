@@ -18,7 +18,7 @@ export class AutorService {
     return this.http.get<Autor[]>(url);
   }
 
-  findAllByLivro(id_livro: String): Observable<Autor[]> {
+  findAllByLivro(id_livro: Number): Observable<Autor[]> {
     const url = `${this.baseUrl}/autor?livro=${id_livro}`;
     return this.http.get<Autor[]>(url);
   }

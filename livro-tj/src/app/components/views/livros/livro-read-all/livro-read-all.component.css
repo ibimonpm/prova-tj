@@ -32,6 +32,11 @@ button{
     margin-left: 0.5rem;
 }
 
+.vincula{
+  color: rgb(201, 51, 51);
+  margin-left: 0.5rem;
+}
+
 .save{
     color: rgb(86, 163, 236);
 }

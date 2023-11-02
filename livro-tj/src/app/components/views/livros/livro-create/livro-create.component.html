@@ -1,103 +1,86 @@
-<div class="example-container">
-  <form>
-    <h1>Novo Livro</h1>
-    <div>
-      <mat-form-field class="form">
-        <label>Titulo</label>
-        <input
-          [(ngModel)]="livro.titulo"
-          type="text"
-          matInput
-          [formControl]="titulo"
-          required
-          name="titulo"
-          placeholder="Ex. Biblia Sagrada"
-          maxlength="40"
-        />
-
-        <mat-error *ngIf="titulo.invalid">{{ getMessage() }}</mat-error>
-      </mat-form-field>
-    </div>
-    <mat-form-field class="form">
-      <mat-label>Editora</mat-label>
-      <input
-        [(ngModel)]="livro.editora"
-        type="text"
-        matInput
-        [formControl]="editora"
-        required
-        name="editora"
-        placeholder="Ex. Alta Books"
-        maxlength="40"
-      />
-
-    </mat-form-field>
+<form>
+  <h1>Novo Livro</h1>
+  <mat-form-field class="form">
+    <label>Titulo</label>
+    <input
+      [(ngModel)]="livro.titulo"
+      type="text"
+      matInput
+      [formControl]="titulo"
+      required
+      name="titulo"
+      placeholder="Ex. Biblia Sagrada"
+      maxlength="40"
+    />
+    <mat-error *ngIf="titulo.invalid">{{ getMessage() }}</mat-error>
+  </mat-form-field>
+  <mat-form-field class="form">
+    <mat-label>Editora</mat-label>
+    <input
+      [(ngModel)]="livro.editora"
+      type="text"
+      matInput
+      [formControl]="editora"
+      required
+      name="editora"
+      placeholder="Ex. Alta Books"
+      maxlength="40"
+    />
     <mat-error *ngIf="editora.invalid">{{ getMessage() }}</mat-error>
+  </mat-form-field>
 
-    <mat-form-field class="form">
-      <mat-label>Edição</mat-label>
+  <mat-form-field class="form">
+    <mat-label>Edição</mat-label>
+    <input
+      height="34"
+      [(ngModel)]="livro.edicao"
+      type="number"
+      matInput
+      required
+      name="edicao"
+      maxlength="3"
+      placeholder="Ex. 1"
+    />
+  </mat-form-field>
 
-      <input
-        height="34"
-        [(ngModel)]="livro.edicao"
-        type="number"
-        matInput
-        required
-        name="edicao"
-        maxlength="3"
-        placeholder="Ex. 1"
-      />
-    </mat-form-field>
+  <mat-form-field class="form">
+    <mat-label>Ano Publicação</mat-label>
+    <mat-select required [(ngModel)]="livro.anoPublicacao" name="anoPublicacao">
+      <mat-option *ngFor="let year of years" [value]="year">
+        {{ year }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field class="form">
-      <mat-label>Ano Publicação</mat-label>
-      <mat-select required>
-        <mat-option>-- None --</mat-option>
-        <mat-option
-          *ngFor="let year of years"
-          [value]="year"
-          [(ngModel)]="livro.anoPublicacao"
-          name="anoPublicacao"
-        >
-          {{ year }}
-        </mat-option>
-      </mat-select>
+  <mat-form-field class="form">
+    <mat-label>Vlr. Médio de Venda</mat-label>
+      <input matInput
+          name="mediaPrecoStr"
+          currencyMask
+          placeholder="Ex. 120,00" value=""
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          [(ngModel)]="livro.mediaPrecoStr">
+  </mat-form-field>
 
-    </mat-form-field>
 
-    
-    <mat-form-field class="form">
-      <input
-        [(ngModel)]="livro.valorMedioVenda"
-        type="number"
-        matInput
-        name="valorMedioVenda"
-        maxlength="3"
-        placeholder="Ex. 44.01"
-      >
-      <span matTextPrefix>R$&nbsp;</span>
-      <span matTextSuffix>.00</span>
-    </mat-form-field>
+  <div class="buttons">
+    <button
+      [disabled]="getMessage()"
+      (click)="create()"
+      class="mat-elevation-z8"
+      mat-stroked-button
+      color="primary"
+    >
+      Criar
+    </button>
 
-    <div class="buttons">
-      <button
-        [disabled]="getMessage()"
-        (click)="create()"
-        class="mat-elevation-z8"
-        mat-stroked-button
-        color="primary"
-      >
-        Criar
-      </button>
-
-      <button
-        (click)="cancel()"
-        class="mat-elevation-z8"
-        mat-stroked-button
-        color="warn"
-      >
-        Cancelar
-      </button>
-    </div>
-  </form>
-</div>
+    <button
+      (click)="cancel()"
+      class="mat-elevation-z8"
+      mat-stroked-button
+      color="warn"
+    >
+      Cancelar
+    </button>
+  </div>
+</form>

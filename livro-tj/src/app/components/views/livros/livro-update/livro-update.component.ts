@@ -1,24 +1,26 @@
-import { Component, OnInit } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
-import { LivroService } from "../livro.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Livro } from "../livro.model";
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { LivroService } from '../livro.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Livro } from '../livro.model';
 
 @Component({
-  selector: "app-livro-update",
-  templateUrl: "./livro-update.component.html",
-  styleUrls: ["./livro-update.component.css"],
+  selector: 'app-livro-update',
+  templateUrl: './livro-update.component.html',
+  styleUrls: ['./livro-update.component.css'],
 })
 export class LivroUpdateComponent {
   id_assunto: Number = 0;
 
   livro: Livro = {
     codI: 0,
-    titulo: "",
-    editora: "",
+    titulo: '',
+    editora: '',
     edicao: 0,
-    anoPublicacao:0,
-    valorMedioVenda:0
+    anoPublicacao: 0,
+    mediaPrecoStr: '',
+    autores:[{id:0, nome:''}],
+    assunto:{id:0, descricao:""}
   };
 
   years: number[] = [];
@@ -38,35 +40,35 @@ export class LivroUpdateComponent {
   }
 
   ngOnInit(): void {
-    this.id_assunto = Number.parseInt(this.route.snapshot.paramMap.get("id_assunto")!);
-    this.livro.codI = Number.parseInt(this.route.snapshot.paramMap.get("codI")!);
-    this.findById();
-  }
-
-  findById(): void {
+    this.livro.codI = Number.parseInt(
+      this.route.snapshot.paramMap.get('codI')!
+    );
+    console.log(this.route.snapshot.paramMap.get('codI')!);
+    console.log(this.livro.codI);
+    //this.id_assunto = Number.parseInt(this.route.snapshot.paramMap.get("id_assunto")!);
     this.service.findById(this.livro.codI!).subscribe((resposta) => {
       this.livro.codI = resposta.codI;
       this.livro.titulo = resposta.titulo;
       this.livro.editora = resposta.editora;
       this.livro.edicao = resposta.edicao;
       this.livro.anoPublicacao = resposta.anoPublicacao;
-      this.livro.valorMedioVenda = resposta.valorMedioVenda;
+      this.livro.mediaPrecoStr = resposta.mediaPrecoStr;
     });
   }
 
   cancel(): void {
-    this.router.navigate([`assuntos/${this.id_assunto}/livros`]);
+    this.router.navigate([`livros`]);
   }
 
   update(): void {
     this.service.update(this.livro).subscribe({
       next: () => {
-        this.router.navigate([`assuntos/${this.id_assunto}/livros`]);
-        this.service.mensagem("Livro alterado com sucesso!");
+        this.router.navigate([`livros`]);
+        this.service.mensagem('Livro alterado com sucesso!');
       },
       error: (erro) => {
-        this.router.navigate([`assuntos/${this.id_assunto}/livros`]);
-        this.service.mensagem("Erro ao altera novo livro, tente mais tarde!");
+        this.router.navigate([`livros`]);
+        this.service.mensagem('Erro ao altera novo livro, tente mais tarde!');
         console.log(erro);
       },
     });
