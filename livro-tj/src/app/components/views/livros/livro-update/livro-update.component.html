@@ -49,7 +49,7 @@
   <mat-form-field class="form">
     <mat-label>Ano Publicação</mat-label>
     <mat-select required [(ngModel)]="livro.anoPublicacao" name="anoPublicacao">
-      <mat-option *ngFor="let year of years" [value]="year">
+      <mat-option *ngFor="let year of years" [value]="livro.anoPublicacao">
         {{ year }}
       </mat-option>
     </mat-select>

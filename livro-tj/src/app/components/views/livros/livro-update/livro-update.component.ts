@@ -45,7 +45,7 @@ export class LivroUpdateComponent {
     );
     console.log(this.route.snapshot.paramMap.get('codI')!);
     console.log(this.livro.codI);
-    //this.id_assunto = Number.parseInt(this.route.snapshot.paramMap.get("id_assunto")!);
+
     this.service.findById(this.livro.codI!).subscribe((resposta) => {
       this.livro.codI = resposta.codI;
       this.livro.titulo = resposta.titulo;
@@ -53,6 +53,8 @@ export class LivroUpdateComponent {
       this.livro.edicao = resposta.edicao;
       this.livro.anoPublicacao = resposta.anoPublicacao;
       this.livro.mediaPrecoStr = resposta.mediaPrecoStr;
+      this.livro.autores = resposta.autores;
+      this.livro.assunto = resposta.assunto;
     });
   }
 

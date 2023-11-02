@@ -36,7 +36,7 @@ export class LivroDeleteComponent {
 
   delete(): void{
     this.service.delete(this.livro.codI!).subscribe(() =>{
-       this.router.navigate(['assuntos']);
+       this.router.navigate(['livros']);
        this.service.mensagem('Livro deletado com sucesso!');
     },
     err =>{
@@ -58,6 +58,8 @@ export class LivroDeleteComponent {
       this.livro.edicao = resposta.edicao;
       this.livro.anoPublicacao = resposta.anoPublicacao;
       this.livro.mediaPrecoStr = resposta.mediaPrecoStr;
+      this.livro.autores = resposta.autores;
+      this.livro.assunto = resposta.assunto;
     });
   }
 }

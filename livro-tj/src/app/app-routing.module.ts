@@ -75,7 +75,7 @@ const routes: Routes = [
     component: AutorDeleteComponent,
   },
   {
-    path: "livros/:id/delete",
+    path: "livros/:codI/delete",
     component: LivroDeleteComponent,
   },
   {
